@@ -15,13 +15,14 @@ import java.util.Objects;
 public class AuthenticationDialog extends Dialog {
     private final String request_url;
     private RequestInstagramTokenResponse listener;
+    private String clientId = "", clientSecret = "";
 
-    public AuthenticationDialog(@NonNull Context context, RequestInstagramTokenResponse listener) {
+    public AuthenticationDialog(@NonNull Context context, RequestInstagramTokenResponse listener, String clientId, String clientSecret) {
         super(context);
         this.listener = listener;
         String redirect_url = context.getResources().getString(R.string.redirect_url);
         this.request_url = context.getResources().getString(R.string.base_url) +
-                "oauth/authorize?client_id=" + context.getResources().getString(R.string.client_id) +
+                "oauth/authorize?client_id=" + clientId +
                 "&redirect_uri=" + redirect_url +
                 "&response_type=code&scope=user_profile,user_media";
     }
@@ -45,7 +46,7 @@ public class AuthenticationDialog extends Dialog {
         webView.getSettings().setDomStorageEnabled(true);
         webView.requestFocusFromTouch();
         webView.setWebChromeClient(new WebChromeClient());
-        webView.setWebViewClient(new MyWebViewClient(getContext(), listener));
+        webView.setWebViewClient(new MyWebViewClient(getContext(), listener, clientId, clientSecret));
         webView.loadUrl(request_url);
     }
 }

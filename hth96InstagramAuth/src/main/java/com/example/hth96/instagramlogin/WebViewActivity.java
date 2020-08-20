@@ -15,6 +15,9 @@ public class WebViewActivity extends AppCompatActivity implements RequestInstagr
     public static final int START_ACTIVITY_RESULT_ID = 1234;
     private ActivityWebviewBinding viewBinding;
 
+    public static String CLIENT_ID = "client_id";
+    public static String CLIENT_SECRET = "client_secret";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +27,17 @@ public class WebViewActivity extends AppCompatActivity implements RequestInstagr
     }
 
     private void initWebview() {
+        // Lay client id va client secret
+        Bundle extras = getIntent().getExtras();
+        String clientId = "", clientSecret = "";
+        if (extras != null) {
+            clientId = extras.getString(CLIENT_ID);
+            clientSecret = extras.getString(CLIENT_SECRET);
+        }
+
         String redirect_url = getResources().getString(R.string.redirect_url);
         String request_url = getResources().getString(R.string.base_url) +
-                "oauth/authorize?client_id=" + getResources().getString(R.string.client_id) +
+                "oauth/authorize?client_id=" + clientId +
                 "&redirect_uri=" + redirect_url +
                 "&response_type=code&scope=user_profile,user_media";
 
@@ -37,7 +48,7 @@ public class WebViewActivity extends AppCompatActivity implements RequestInstagr
         viewBinding.webView.getSettings().setDomStorageEnabled(true);
         viewBinding.webView.requestFocusFromTouch();
         viewBinding.webView.setWebChromeClient(new WebChromeClient());
-        viewBinding.webView.setWebViewClient(new MyWebViewClient(this, this));
+        viewBinding.webView.setWebViewClient(new MyWebViewClient(this, this, clientId, clientSecret));
         viewBinding.webView.loadUrl(request_url);
     }
 

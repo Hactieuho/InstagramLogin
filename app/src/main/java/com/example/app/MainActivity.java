@@ -23,13 +23,16 @@ public class MainActivity extends AppCompatActivity implements RequestInstagramT
     }
 
     public void dialog(View view) {
-        AuthenticationDialog authenticationDialog = new AuthenticationDialog(this, this);
+        AuthenticationDialog authenticationDialog = new AuthenticationDialog(this, this, "16*******", "52******");
         authenticationDialog.setCancelable(true);
         authenticationDialog.show();
     }
 
     public void webview(View view) {
-        startActivityForResult(new Intent(this, WebViewActivity.class), WebViewActivity.START_ACTIVITY_RESULT_ID);
+        startActivityForResult(new Intent(this, WebViewActivity.class)
+                .putExtra(WebViewActivity.CLIENT_ID, "16*******")
+                .putExtra(WebViewActivity.CLIENT_SECRET, "52******")
+                , WebViewActivity.START_ACTIVITY_RESULT_ID);
     }
 
     @Override

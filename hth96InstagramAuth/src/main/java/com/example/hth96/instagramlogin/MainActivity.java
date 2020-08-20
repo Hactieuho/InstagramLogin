@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements RequestInstagramT
             logout();
         } else {
             if (authenticationDialog == null) {
-                authenticationDialog = new AuthenticationDialog(this, this);
+                authenticationDialog = new AuthenticationDialog(this, this, "16*******", "52******");
             }
             authenticationDialog.setCancelable(true);
             authenticationDialog.show();
@@ -45,7 +45,10 @@ public class MainActivity extends AppCompatActivity implements RequestInstagramT
     private AuthenticationDialog authenticationDialog;
 
     public void webview(View view) {
-        startActivityForResult(new Intent(this, WebViewActivity.class), WebViewActivity.START_ACTIVITY_RESULT_ID);
+        startActivityForResult(new Intent(this, WebViewActivity.class)
+                .putExtra(WebViewActivity.CLIENT_ID, "16*******")
+                .putExtra(WebViewActivity.CLIENT_SECRET, "52******")
+                , WebViewActivity.START_ACTIVITY_RESULT_ID);
     }
 
     @Override

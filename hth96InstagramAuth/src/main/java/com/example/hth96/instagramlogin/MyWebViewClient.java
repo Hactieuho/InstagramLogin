@@ -15,10 +15,13 @@ public class MyWebViewClient extends WebViewClient {
 
     public final Context context;
     public final RequestInstagramTokenResponse listener;
+    private String clientId, clientSecret;
 
-    public MyWebViewClient(Context context, RequestInstagramTokenResponse listener) {
+    public MyWebViewClient(Context context, RequestInstagramTokenResponse listener, String clientId, String clientSecret) {
         this.context = context;
         this.listener = listener;
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class MyWebViewClient extends WebViewClient {
                 // Luu lai authorization code
                 InstagramData.getInstance().accessToken = authorizationCode;
                 // Lay access token bang authorization code
-                new RequestInstagramToken(context, listener).execute();
+                new RequestInstagramToken(context, listener, clientId, clientSecret).execute();
             }
         } else if (url.contains("?error")) {
             Log.e(RequestInstagramTokenResponse.ACCESS_TOKEN, "getting error fetching access token");

@@ -28,10 +28,13 @@ public class RequestInstagramToken extends AsyncTask<Void, String, String> {
 
     public final RequestInstagramTokenResponse listener;
     public Context context;
+    private String clientId, clientSecret;
 
-    public RequestInstagramToken(Context context, RequestInstagramTokenResponse listener) {
+    public RequestInstagramToken(Context context, RequestInstagramTokenResponse listener, String clientId, String clientSecret) {
         this.context = context;
         this.listener = listener;
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
     }
 
     @Override
@@ -52,8 +55,8 @@ public class RequestInstagramToken extends AsyncTask<Void, String, String> {
 
             // Add your data
             List<NameValuePair> nameValuePairs = new ArrayList<>();
-            nameValuePairs.add(new BasicNameValuePair("client_id", context.getResources().getString(R.string.client_id)));
-            nameValuePairs.add(new BasicNameValuePair("client_secret", context.getResources().getString(R.string.client_secret)));
+            nameValuePairs.add(new BasicNameValuePair("client_id", clientId));
+            nameValuePairs.add(new BasicNameValuePair("client_secret", clientSecret));
             nameValuePairs.add(new BasicNameValuePair("grant_type", "authorization_code"));
             nameValuePairs.add(new BasicNameValuePair("redirect_uri", context.getResources().getString(R.string.redirect_url)));
             nameValuePairs.add(new BasicNameValuePair("code", InstagramData.getInstance().accessToken));

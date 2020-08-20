@@ -1,14 +1,7 @@
 # This library created by Hactieuho96@gmail.com
 **Login instagram to get access token using 2 ways: Start new activity or show dialog**
-1. Change these library string resources:
-    ```
-    <string name="client_id">163****</string>
-    <string name="client_secret">522****</string>
-    <string name="redirect_url">https://instagram.com/</string>
-    <string name="base_url">https://api.instagram.com/</string>
-   ```
-   
-2. Project gradle:
+
+1. Project gradle:
     ```
     allprojects {
 		repositories {
@@ -18,14 +11,14 @@
 	}
     ```
 
-3. App gradle:
+2. App gradle:
     ```
     dependencies {
 	        implementation 'com.github.Hactieuho:InstagramLogin:1.0'
 	}
     ```
 
-4. Start activity WebViewActivity from MainActivity:
+3. Start activity WebViewActivity from MainActivity:
 
 - Override onActivityResult method in MainActivity:
     ```
@@ -45,11 +38,17 @@
     }
     ```
   
-` startActivityForResult(new Intent(this, WebViewActivity.class), WebViewActivity.START_ACTIVITY_RESULT_ID); `
+    ```
+    // Pass client id and client secret through intent
+    startActivityForResult(new Intent(this, WebViewActivity.class)
+                .putExtra(WebViewActivity.CLIENT_ID, "16*******")
+                .putExtra(WebViewActivity.CLIENT_SECRET, "52******")
+                , WebViewActivity.START_ACTIVITY_RESULT_ID);
+    ```
 
 - access token is saved at InstagramData.instance.accessToken
 
-5. Show login instagram dialog:
+4. Show login instagram dialog:
 
 - MainActivity implements RequestInstagramTokenResponse:
     ```
@@ -68,7 +67,8 @@
 - Init and show dialog:
     ```
     if (authenticationDialog == null) {
-            authenticationDialog = new AuthenticationDialog(this, this);
+            // Replace with your client id and client secret
+            authenticationDialog = new AuthenticationDialog(this, this, "16*******", "52******");
         }
         authenticationDialog.setCancelable(true);
         authenticationDialog.show();
