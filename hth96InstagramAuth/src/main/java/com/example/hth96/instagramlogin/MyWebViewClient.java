@@ -48,9 +48,8 @@ public class MyWebViewClient extends WebViewClient {
             }
             if (!Objects.equals(authorizationCode, "")) {
                 Log.e("authorization code: ", authorizationCode);
-                // Lay access token
                 // Luu lai authorization code
-                InstagramData.getInstance().accessToken = authorizationCode;
+                InstagramData.getInstance().authorizationCode = authorizationCode;
                 // Lay access token bang authorization code
                 new RequestInstagramToken(context, listener, clientId, clientSecret).execute();
             }

@@ -15,10 +15,12 @@ import java.util.Objects;
 public class AuthenticationDialog extends Dialog {
     private final String request_url;
     private RequestInstagramTokenResponse listener;
-    private String clientId = "", clientSecret = "";
+    private String clientId, clientSecret;
 
     public AuthenticationDialog(@NonNull Context context, RequestInstagramTokenResponse listener, String clientId, String clientSecret) {
         super(context);
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
         this.listener = listener;
         String redirect_url = context.getResources().getString(R.string.redirect_url);
         this.request_url = context.getResources().getString(R.string.base_url) +

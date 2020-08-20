@@ -4,6 +4,7 @@ public class InstagramData {
 
     private static InstagramData instance = null;
     public String userId = null;
+    public String authorizationCode = null;
     public String accessToken = null;
 
     public static InstagramData getInstance() {

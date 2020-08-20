@@ -14,7 +14,7 @@
 2. App gradle:
     ```
     dependencies {
-	        implementation 'com.github.Hactieuho:InstagramLogin:1.1'
+	        implementation 'com.github.Hactieuho:InstagramLogin:1.2'
 	}
     ```
 

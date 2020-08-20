@@ -59,7 +59,7 @@ public class RequestInstagramToken extends AsyncTask<Void, String, String> {
             nameValuePairs.add(new BasicNameValuePair("client_secret", clientSecret));
             nameValuePairs.add(new BasicNameValuePair("grant_type", "authorization_code"));
             nameValuePairs.add(new BasicNameValuePair("redirect_uri", context.getResources().getString(R.string.redirect_url)));
-            nameValuePairs.add(new BasicNameValuePair("code", InstagramData.getInstance().accessToken));
+            nameValuePairs.add(new BasicNameValuePair("code", InstagramData.getInstance().authorizationCode));
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
 
             httpClient.getConnectionManager().getSchemeRegistry().register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
