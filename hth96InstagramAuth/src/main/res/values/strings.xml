@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">InstagramLogin</string>
+    <string name="client_id">16*******</string>
+    <string name="client_secret">52******</string>
+    <string name="redirect_url">https://instagram.com/</string>
+    <string name="base_url">https://api.instagram.com/</string>
+</resources>
