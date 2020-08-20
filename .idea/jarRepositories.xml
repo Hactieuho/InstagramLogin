@@ -36,5 +36,15 @@
       <option name="name" value="E:\Android\Sdk\extras\android\m2repository" />
       <option name="url" value="file:/$PROJECT_DIR$/../../Sdk/extras/android/m2repository" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://jitpack.io" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://maven.google.com" />
+    </remote-repository>
   </component>
 </project>

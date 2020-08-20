@@ -7,10 +7,25 @@
     <string name="redirect_url">https://instagram.com/</string>
     <string name="base_url">https://api.instagram.com/</string>
    ```
-2. App gradle:
-`implementation project(path: ':hth96InstagramAuth')`
-    
-3. Start activity WebViewActivity from MainActivity:
+   
+2. Project gradle:
+    ```
+    allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+    ```
+
+3. App gradle:
+    ```
+    dependencies {
+	        implementation 'com.github.Hactieuho:InstagramLogin:1.0'
+	}
+    ```
+
+4. Start activity WebViewActivity from MainActivity:
 
 - Override onActivityResult method in MainActivity:
     ```
@@ -34,7 +49,7 @@
 
 - access token is saved at InstagramData.instance.accessToken
 
-4. Show login instagram dialog:
+5. Show login instagram dialog:
 
 - MainActivity implements RequestInstagramTokenResponse:
     ```
